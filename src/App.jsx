@@ -1,6 +1,6 @@
 import { useState } from "react"
-import InputText from "./Components/InputText"
 import FormAddGame from "./Components/FormAddGame"
+import AllGames from "./Components/AllGames"
 
 export default function App(){
   const [ games , setGames ] = useState(()=>{
@@ -35,19 +35,10 @@ export default function App(){
         <>
         <h1>Biblioteca de jogos</h1>
 
-        <FormAddGame/>
+        <FormAddGame addGame={addGame}/>
 
-        <div className="games">
-          {games.map((game) => (
-            <div key={game.id}>
-              <img src={game.cover} alt={game.title} />
-              <div>
-                <h2>{game.title}</h2>
-                <button onClick={() => removeGame(game.id)}>Remover</button>
-              </div>
-            </div>
-          ))}
-        </div>
+        <AllGames games={games} removeGame={removeGame}/>
+        
         </>
     )
 }

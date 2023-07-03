@@ -1,7 +1,7 @@
 import { useState } from "react"
 import InputText from "./InputText"
 
-export default function FormAddGame(){
+export default function FormAddGame({ addGame }){
     const [ title, setTitle ] = useState("")
     const [ cover, setCover ] = useState("")
 
