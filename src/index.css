@@ -67,7 +67,7 @@ form {
   gap: 2rem;
 }
 
-input {
+input, button {
   color: rgba(255, 255, 255, 0.87);
   border-radius: 8px;
   border: 1px solid transparent;
