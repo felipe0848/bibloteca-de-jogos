@@ -1,7 +1,11 @@
 import { useState } from "react"
 
 export default function App(){
-  const [ games , setGames ] = useState([])
+  const [ games , setGames ] = useState(()=>{
+    const storedGames = localStorage.getItem("lib-games")
+    if (!storedGames) return []
+    return JSON.parse(storedGames)
+  })
   const [ title, setTitle ] = useState("")
   const [ cover, setCover ] = useState("")
 
@@ -9,11 +13,19 @@ export default function App(){
     const id = Math.floor(Math.random()*1000000)
     const game = {id , title, cover}
 
-    setGames((games) => [...games, game])
+    setGames((games) => {
+      const gamesArray = [...games, game]
+      localStorage.setItem("lib-games", JSON.stringify(gamesArray))
+      return gamesArray
+    })
   }
 
   const removeGame = (id) => {
-    setGames((games) => games.filter(game => game.id !== id))
+    setGames((games) => {
+      const gamesArray = games.filter(game => game.id !== id)
+      localStorage.setItem("lib-games", JSON.stringify(gamesArray))
+      return gamesArray
+    })
   }
 
   const handleSubmit = (ev)=>{
