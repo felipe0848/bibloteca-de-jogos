@@ -1,4 +1,5 @@
 import { useState } from "react"
+import InputText from "./Components/InputText"
 
 export default function App(){
   const [ games , setGames ] = useState(()=>{
@@ -38,17 +39,13 @@ export default function App(){
     return(
         <>
         <h1>Biblioteca de jogos</h1>
+        
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="title">Título:</label>
-            <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)}/>
-          </div>
-          <div>
-            <label htmlFor="cover">Capa:</label>
-            <input type="text" id="cover" value={cover} onChange={(e) => setCover(e.target.value)} />
-          </div>
+          <InputText label="Título" value={title} setValue={setTitle} />
+          <InputText label="Capa" value={cover} setValue={setCover} />
           <button type="submit">Adicionar a bibilioteca</button>
         </form>
+
         <div className="games">
           {games.map((game) => (
             <div key={game.id}>
